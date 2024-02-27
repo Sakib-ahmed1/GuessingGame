@@ -15,14 +15,19 @@ public class GuessingGame {
 	public String guess(int number) {
 		currentGuesses++;
 		if (number < 1 || number > 100) {
-			return "Your guess is not between 1 and 100, please try again";
-		} else if (number < theNumber) {
-			return "Please pick a higher number";
-		} else if (number > theNumber) {
-			return "Please pick a lower number";
+			return "Your guess is not between 1 and 100, please try again:";
 		} else {
-			return "You win!";
+			currentGuesses++;
+			if (number < thenumber) {
+				return "Please pick a higher number:";
+			} else if (number > theNumber) {
+				return "Please pick a lower number";
+			} else {
+				return "You win!";
+			}
+			
 		}
+		
 	}
 
 	public boolean isGameOver() {
