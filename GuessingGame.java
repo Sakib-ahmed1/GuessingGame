@@ -18,7 +18,7 @@ public class GuessingGame {
 			return "Your guess is not between 1 and 100, please try again:";
 		} else {
 			currentGuesses++;
-			if (number < thenumber) {
+			if (number < theNumber) {
 				return "Please pick a higher number:";
 			} else if (number > theNumber) {
 				return "Please pick a lower number";
