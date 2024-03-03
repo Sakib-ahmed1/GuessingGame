@@ -1,45 +1,46 @@
 package com.coderscampus.GuessingGame;
 
+import java.util.Random;
+
 public class GuessingGame {
+    private int theNumber;
+    private int maxGuesses;
+    private int currentGuesses;
+    private boolean hasWon;
 
-	private int theNumber;
-	private int maxGuesses;
-	private int currentGuesses;
+    public GuessingGame() {
+        Random rand = new Random();
+        theNumber = rand.nextInt(100) + 1;
+        maxGuesses = 5;
+        currentGuesses = 0;
+        hasWon = false;
+    }
 
-	public GuessingGame() {
-		theNumber = (int) (Math.random() * 100) + 1;
-		maxGuesses = 5;
-		currentGuesses = 0;
-	}
+    public String guess(int number) {
+    	if (number < 1 || number > 100) {
+            return "Your guess is not between 1 and 100, please try again";
+        } else if (number != theNumber) {
+            currentGuesses++;
+            if (number < theNumber) {
+                return "Please pick a higher number";
+            } else {
+                return "Please pick a lower number";
+            }
+        } else {
+            hasWon = true;
+            return "You win!";
+        }
+    }
 
-	public String guess(int number) {
-		currentGuesses++;
-		if (number < 1 || number > 100) {
-			return "Your guess is not between 1 and 100, please try again:";
-		} else {
-			currentGuesses++;
-			if (number < theNumber) {
-				return "Please pick a higher number:";
-			} else if (number > theNumber) {
-				return "Please pick a lower number";
-			} else {
-				return "You win!";
-			}
-			
-		}
-		
-	}
+    public boolean isGameOver() {
+        return currentGuesses >= maxGuesses || hasWon;
+    }
 
-	public boolean isGameOver() {
-		return currentGuesses >= maxGuesses || hasWon();
-	}
+    public boolean hasWon() {
+        return hasWon;
+    }
 
-	public boolean hasWon() {
-		return currentGuesses <= maxGuesses && theNumber == currentGuesses;
-	}
-
-	public int getTheNumber() {
-		return theNumber;
-	}
-
+    public int getTheNumber() {
+        return theNumber;
+    }
 }
